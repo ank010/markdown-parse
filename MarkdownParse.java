@@ -15,7 +15,7 @@ public class MarkdownParse {
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            if(openParen != -1 && closeParen != -1){
+            if(openParen != -1 && closeParen != -1 && nextCloseBracket != -1 && nextOpenBracket != -1){
                 if(openParen - nextCloseBracket == 1){
                     String substring = markdown.substring(openParen+1, closeParen);
                     if(!substring.contains(" ")){
@@ -25,7 +25,7 @@ public class MarkdownParse {
                     }
                 }
             }
-            if(closeParen == -1){
+            if(closeParen == -1 || nextCloseBracket == -1){
                 break;
             }
             currentIndex = closeParen + 1;
